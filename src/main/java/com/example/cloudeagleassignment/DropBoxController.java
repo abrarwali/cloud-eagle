@@ -24,8 +24,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/cloudeagle/dropbox")
 public class DropBoxController {
-//    private static final String SCOPES = "members.read events.read team_info.read account_info.read";
-    private static final String SCOPES = "";
+    private static final String SCOPES = "members.read events.read team_info.read account_info.read";
     private final DropboxConfig dropboxConfig;
 
     public DropBoxController(DropboxConfig dropboxConfig) {
