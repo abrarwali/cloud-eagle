@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -48,7 +49,10 @@ public class DropBoxController {
 
         List<TeamMemberInfo> teamMembers = teamClient.team().membersList().getMembers();
         List<MemberDTO> memberDtos = convertToMemberDtos(teamMembers);
-
+        // Pretty print using Jackson
+        ObjectMapper mapper = new ObjectMapper();
+        String prettyJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(memberDtos);
+        System.out.println(prettyJson);
         return ResponseEntity.ok(memberDtos);
     }
 
